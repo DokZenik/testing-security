@@ -39,10 +39,13 @@ public class AuthenticationRestControllerV1 {
     public ResponseEntity<?> authenticate(@RequestBody AuthenticationRequestDTO request){
         System.out.println("testing");
         try {
+            System.out.println("testing1");
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+            System.out.println("testin2");
             UserModel userModel = userRepository.findByEmail(request.getEmail());
+            System.out.println("testing3");
             String token = jwtTokenProvider.createToken(request.getEmail(), userModel.getRole().name());
-
+            System.out.println("testing4");
             Map<Object, Object> response = new HashMap<>();
             response.put("email", request.getEmail());
             response.put("token", token);
