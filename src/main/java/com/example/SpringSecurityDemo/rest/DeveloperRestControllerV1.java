@@ -11,7 +11,6 @@ import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/api/v1/developers")
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class DeveloperRestControllerV1 {
 
     private List<Developer> DEVELOPERS = Stream.of(
@@ -21,7 +20,6 @@ public class DeveloperRestControllerV1 {
     ).collect(Collectors.toList());
 
     @GetMapping
-    @PreAuthorize("hasAuthority('developers:read')")
     public List<Developer> getAll(){
         return DEVELOPERS;
     }
